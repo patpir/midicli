@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
@@ -13,26 +14,31 @@ import (
 func ListCmd() cli.Command {
 	return cli.Command{
 		Name: "list",
+		Aliases: []string{"ls"},
 		Usage: "list all available sources, transformations and visualizations",
 		Action: performList,
 		Subcommands: []cli.Command{
 			{
 				Name: "all",
+				Aliases: []string{"a"},
 				Usage: "list all available sources, transformations and visualizations",
 				Action: performList,
 			},
 			{
 				Name: "sources",
+				Aliases: []string{"s"},
 				Usage: "list all available sources",
 				Action: performListSources,
 			},
 			{
 				Name: "transformations",
+				Aliases: []string{"t"},
 				Usage: "list all available transformations",
 				Action: performListTransformations,
 			},
 			{
 				Name: "visualizations",
+				Aliases: []string{"v"},
 				Usage: "list all available visualizations",
 				Action: performListVisualizations,
 			},
@@ -42,10 +48,13 @@ func ListCmd() cli.Command {
 
 
 func performList(c *cli.Context) error {
-	performListSources(c)
-	performListTransformations(c)
-	performListVisualizations(c)
-	return nil
+	if len(c.Args()) == 0 {
+		performListSources(c)
+		performListTransformations(c)
+		performListVisualizations(c)
+		return nil
+	}
+	return errors.New(fmt.Sprintf("Unexpected argument '%s' for list command (possible values: 'all', 'sources', 'transformations', 'visualizations')", c.Args().First()))
 }
 
 func performListSources(c *cli.Context) error {
