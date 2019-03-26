@@ -1,3 +1,6 @@
 # Build artifacts
 midicli
 
+# Pipeline files
+MidiPipeline.json
+
