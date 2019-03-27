@@ -2,6 +2,8 @@ package pipeline
 
 import (
 	"io"
+
+	"github.com/patpir/miditf/blocks"
 )
 
 // naming is unusual, but clashes with members of
@@ -13,6 +15,8 @@ type Pipeline interface {
 
 	Write(writer io.Writer) error
 	WriteToFile(filepath string) error
+
+	ToPerformablePipeline() *blocks.Pipeline
 
 	SourceList() []*Block
 	TransformationList() []*Block
@@ -53,5 +57,24 @@ func (p *pipeline) TransformationList() []*Block {
 
 func (p *pipeline) VisualizationList() []*Block {
 	return p.Visualizations
+}
+
+
+func (p *pipeline) ToPerformablePipeline() *blocks.Pipeline {
+	pipeline := blocks.NewPipeline()
+
+	for _, source := range p.Sources {
+		pipeline.AddSource(source)
+	}
+
+	for _, transformation := range p.Transformations {
+		pipeline.AddTransformation(transformation)
+	}
+
+	for _, visualization := range p.Visualizations {
+		pipeline.AddVisualization(visualization)
+	}
+
+	return pipeline
 }
 

@@ -46,3 +46,20 @@ func TestAddVisualization(t *testing.T) {
 	assert.Equal(t, "some-name", p.Visualizations[0].Name)
 }
 
+func TestToPerformablePipeline(t *testing.T) {
+	p := new(pipeline)
+	block := &Block{
+		TypeIdentifier: "some-type",
+		Name: "some-name",
+	}
+
+	p.AddSource(block)
+	p.AddTransformation(block)
+	p.AddVisualization(block)
+
+	performable := p.ToPerformablePipeline()
+	assert.Equal(t, 1, len(performable.Sources()))
+	assert.Equal(t, 1, len(performable.Transformations()))
+	assert.Equal(t, 1, len(performable.Visualizations()))
+}
+
