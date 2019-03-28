@@ -33,6 +33,14 @@ type pipeline struct {
 }
 
 
+func New() Pipeline {
+	return &pipeline{
+		Sources: []*Block{},
+		Transformations: []*Block{},
+		Visualizations: []*Block{},
+	}
+}
+
 // Implement `Pipeline` interface for `pipeline` struct
 
 func (p *pipeline) AddSource(source *Block) {
