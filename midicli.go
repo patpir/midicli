@@ -24,6 +24,7 @@ func main() {
 		commands.ResetCmd(),
 		commands.ListCmd(),
 		commands.AddCmd(),
+		commands.Status(),
 	}
 
 	err := app.Run(os.Args)
