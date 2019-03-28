@@ -10,7 +10,7 @@ import (
 )
 
 
-func InitCmd() cli.Command {
+func Init() cli.Command {
 	return cli.Command {
 		Name: "init",
 		Usage: "initializes a new pipeline",

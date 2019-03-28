@@ -20,10 +20,10 @@ func main() {
 	app := cli.NewApp()
 
 	app.Commands = []cli.Command{
-		commands.InitCmd(),
-		commands.ResetCmd(),
-		commands.ListCmd(),
-		commands.AddCmd(),
+		commands.Init(),
+		commands.Reset(),
+		commands.List(),
+		commands.Add(),
 		commands.Status(),
 	}
 

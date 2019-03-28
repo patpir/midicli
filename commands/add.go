@@ -5,14 +5,14 @@ import (
 )
 
 
-func AddCmd() cli.Command {
+func Add() cli.Command {
 	return cli.Command{
 		Name: "add",
 		Usage: "add a source, transformation or visualization to the pipeline",
 		Subcommands: []cli.Command{
-			addSourceCmd(),
-			addTransformationCmd(),
-			addVisualizationCmd(),
+			AddSource(),
+			AddTransformation(),
+			AddVisualization(),
 		},
 		Flags: []cli.Flag{
 			cli.StringFlag{

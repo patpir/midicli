@@ -10,7 +10,7 @@ import (
 )
 
 
-func ResetCmd() cli.Command {
+func Reset() cli.Command {
 	return cli.Command {
 		Name: "reset",
 		Usage: "reset the pipeline to a clean state",

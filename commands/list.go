@@ -11,7 +11,7 @@ import (
 )
 
 
-func ListCmd() cli.Command {
+func List() cli.Command {
 	return cli.Command{
 		Name: "list",
 		Aliases: []string{"ls"},

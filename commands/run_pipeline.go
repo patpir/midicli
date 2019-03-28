@@ -9,7 +9,7 @@ import (
 )
 
 
-func RunPipelineCmd() cli.Command {
+func RunPipeline() cli.Command {
 	return cli.Command{
 		Name: "run-pipeline",
 		Aliases: []string{"run"},

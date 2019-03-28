@@ -7,7 +7,7 @@ import (
 )
 
 
-func addSourceCmd() cli.Command {
+func AddSource() cli.Command {
 	return cli.Command{
 		Name: "source",
 		Aliases: []string{"s"},

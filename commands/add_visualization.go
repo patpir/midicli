@@ -7,7 +7,7 @@ import (
 )
 
 
-func addVisualizationCmd() cli.Command {
+func AddVisualization() cli.Command {
 	return cli.Command{
 		Name: "visualization",
 		Aliases: []string{"v"},

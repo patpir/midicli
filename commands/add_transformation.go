@@ -7,7 +7,7 @@ import (
 )
 
 
-func addTransformationCmd() cli.Command {
+func AddTransformation() cli.Command {
 	return cli.Command{
 		Name: "transformation",
 		Aliases: []string{"t"},
