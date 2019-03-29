@@ -1,12 +1,12 @@
 package commands
 
 import (
-	"errors"
 	"fmt"
 	"strings"
 
 	"github.com/urfave/cli"
 
+	"github.com/patpir/midicli/messages"
 	"github.com/patpir/midicli/pipeline"
 )
 
@@ -35,7 +35,7 @@ func performStatus(c *cli.Context) error {
 	}
 
 	if !initialized {
-		return cli.NewExitError(errors.New("Could not find pipeline file. Use 'midicli init' to initialize a new pipeline."), 1)
+		return cli.NewExitError(messages.PipelineNotInitialized, 1)
 	}
 
 	p, err := pipeline.ReadFromFile(filepath)

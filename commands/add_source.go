@@ -3,6 +3,7 @@ package commands
 import (
 	"github.com/urfave/cli"
 
+	"github.com/patpir/midicli/messages"
 	"github.com/patpir/midicli/pipeline"
 )
 
@@ -19,20 +20,31 @@ func AddSource() cli.Command {
 
 func addSource(c *cli.Context) error {
 	filepath := c.Parent().String("pipeline-file")
+	initialized, err := pipeline.IsInitialized(filepath)
+	if err != nil {
+		return cli.NewExitError(err, 1)
+	}
+
+	if !initialized {
+		return cli.NewExitError(messages.PipelineNotInitialized, 1)
+	}
 
 	sourceBlock, err := blockArguments(c.Args()).toBlock()
 	if err != nil {
-		return err
+		return cli.NewExitError(err, 1)
 	}
 
-	pipeline, err := pipeline.ReadFromFile(filepath)
+	p, err := pipeline.ReadFromFile(filepath)
 	if err != nil {
-		return err
+		return cli.NewExitError(err, 1)
 	}
 
-	pipeline.AddSource(sourceBlock)
-	pipeline.WriteToFile(filepath)
+	p.AddSource(sourceBlock)
+	p.WriteToFile(filepath)
 
-	return err
+	if err != nil {
+		return cli.NewExitError(err, 1)
+	}
+	return nil
 }
 

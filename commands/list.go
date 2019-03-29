@@ -1,13 +1,14 @@
 package commands
 
 import (
-	"errors"
 	"fmt"
 	"strings"
 
 	"github.com/urfave/cli"
 
 	"github.com/patpir/miditf/blocks"
+
+	"github.com/patpir/midicli/messages"
 )
 
 
@@ -54,7 +55,10 @@ func performList(c *cli.Context) error {
 		performListVisualizations(c)
 		return nil
 	}
-	return errors.New(fmt.Sprintf("Unexpected argument '%s' for list command (possible values: 'all', 'sources', 'transformations', 'visualizations')", c.Args().First()))
+
+	messages.PrintCommandArgumentUnexpected(c.Args().First())
+	cli.ShowAppHelpAndExit(c, 1)
+	return nil
 }
 
 func performListSources(c *cli.Context) error {

@@ -5,6 +5,7 @@ import (
 
 	"github.com/patpir/miditf/blocks"
 
+	"github.com/patpir/midicli/messages"
 	"github.com/patpir/midicli/pipeline"
 )
 
@@ -28,17 +29,25 @@ func RunPipeline() cli.Command {
 
 func runPipeline(c *cli.Context) error {
 	filepath := c.String("pipeline-file")
+	initialized, err := pipeline.IsInitialized(filepath)
+	if err != nil {
+		return cli.NewExitError(err, 1)
+	}
+
+	if !initialized {
+		return cli.NewExitError(messages.PipelineNotInitialized, 1)
+	}
 
 	pipelineDefinition, err := pipeline.ReadFromFile(filepath)
 	if err != nil {
-		return err
+		return cli.NewExitError(err, 1)
 	}
 
 	ch := make(chan blocks.PipelineResult, 1)
 
-	pipeline := pipelineDefinition.ToPerformablePipeline()
+	p := pipelineDefinition.ToPerformablePipeline()
 	go func() {
-		pipeline.Perform(ch)
+		p.Perform(ch)
 		close(ch)
 	}()
 

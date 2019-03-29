@@ -1,11 +1,11 @@
 package commands
 
 import (
-	"errors"
 	"fmt"
 
 	"github.com/urfave/cli"
 
+	"github.com/patpir/midicli/messages"
 	"github.com/patpir/midicli/pipeline"
 )
 
@@ -34,7 +34,7 @@ func performInit(c *cli.Context) error {
 	}
 
 	if initialized {
-		return cli.NewExitError(errors.New("Pipeline is already initialized. Use 'midicli reset' to return to a fresh state."), 1)
+		return cli.NewExitError(messages.PipelineAlreadyInitialized, 1)
 	}
 
 	p := pipeline.New()
