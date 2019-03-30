@@ -13,6 +13,7 @@ func AddVisualization() cli.Command {
 		Name: "visualization",
 		Aliases: []string{"v"},
 		Usage: "add a visualization to the pipeline",
+		ArgsUsage: "<TYPE> <NAME> <ARG=VALUE ...>",
 		Action: addVisualization,
 	}
 }

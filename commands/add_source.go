@@ -13,6 +13,7 @@ func AddSource() cli.Command {
 		Name: "source",
 		Aliases: []string{"s"},
 		Usage: "add a source to the pipeline",
+		ArgsUsage: "<TYPE> <NAME> <ARG=VALUE ...>",
 		Action: addSource,
 	}
 }

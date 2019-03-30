@@ -13,6 +13,7 @@ func AddTransformation() cli.Command {
 		Name: "transformation",
 		Aliases: []string{"t"},
 		Usage: "add a transformation to the pipeline",
+		ArgsUsage: "<TYPE> <NAME> <ARG=VALUE ...>",
 		Action: addTransformation,
 	}
 }
