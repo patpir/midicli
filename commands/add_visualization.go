@@ -39,6 +39,11 @@ func addVisualization(c *cli.Context) error {
 		return cli.NewExitError(err, 1)
 	}
 
+	_, existingVisualization := p.FindVisualizationByName(visualizationBlock.Name)
+	if existingVisualization != nil {
+		return cli.NewExitError(messages.PipelineInsertDuplicateVisualization, 1)
+	}
+
 	p.AddVisualization(visualizationBlock)
 	p.WriteToFile(filepath)
 

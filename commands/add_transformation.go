@@ -39,6 +39,11 @@ func addTransformation(c *cli.Context) error {
 		return cli.NewExitError(err, 1)
 	}
 
+	_, existingTransformation := p.FindTransformationByName(transformationBlock.Name)
+	if existingTransformation != nil {
+		return cli.NewExitError(messages.PipelineInsertDuplicateTransformation, 1)
+	}
+
 	p.AddTransformation(transformationBlock)
 	p.WriteToFile(filepath)
 

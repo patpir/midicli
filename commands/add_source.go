@@ -39,6 +39,11 @@ func addSource(c *cli.Context) error {
 		return cli.NewExitError(err, 1)
 	}
 
+	_, existingSource := p.FindSourceByName(sourceBlock.Name)
+	if existingSource != nil {
+		return cli.NewExitError(messages.PipelineInsertDuplicateSource, 1)
+	}
+
 	p.AddSource(sourceBlock)
 	p.WriteToFile(filepath)
 

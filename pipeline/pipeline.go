@@ -13,6 +13,10 @@ type Pipeline interface {
 	AddTransformation(transformation *Block)
 	AddVisualization(visualization *Block)
 
+	FindSourceByName(name string) (int, *Block)
+	FindTransformationByName(name string) (int, *Block)
+	FindVisualizationByName(name string) (int, *Block)
+
 	Write(writer io.Writer) error
 	WriteToFile(filepath string) error
 
