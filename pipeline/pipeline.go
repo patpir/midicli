@@ -17,6 +17,10 @@ type Pipeline interface {
 	FindTransformationByName(name string) (int, *Block)
 	FindVisualizationByName(name string) (int, *Block)
 
+	RemoveSourceAt(index int)
+	RemoveTransformationAt(index int)
+	RemoveVisualizationAt(index int)
+
 	Write(writer io.Writer) error
 	WriteToFile(filepath string) error
 

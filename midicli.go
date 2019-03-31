@@ -24,6 +24,7 @@ func main() {
 		commands.Reset(),
 		commands.List(),
 		commands.Add(),
+		commands.Remove(),
 		commands.Status(),
 	}
 

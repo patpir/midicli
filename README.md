@@ -33,6 +33,11 @@ is the name of the source as shown by `midicli list`, `import-music` is a
 user-chosen identifier unique to the pipeline definition, and `file` is the
 name of the argument to the `midi-file` source, as shown by `midicli list`.
 
+You can also remove existing items from the pipeline definition, by using the
+`midicli remove` command with the name of the item to remove, e.g.
+`midicli remove source import-music` to undo the add command in the example
+above.
+
 To show all entries in a pipeline definition, use the `midicli show` command.
 
 If you want to clear a pipeline definition and return to the state created by
