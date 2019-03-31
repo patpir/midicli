@@ -46,7 +46,7 @@ func addSource(c *cli.Context) error {
 	}
 
 	p.AddSource(sourceBlock)
-	p.WriteToFile(filepath)
+	err = p.WriteToFile(filepath)
 
 	if err != nil {
 		return cli.NewExitError(err, 1)

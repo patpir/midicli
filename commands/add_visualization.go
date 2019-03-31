@@ -46,7 +46,7 @@ func addVisualization(c *cli.Context) error {
 	}
 
 	p.AddVisualization(visualizationBlock)
-	p.WriteToFile(filepath)
+	err = p.WriteToFile(filepath)
 
 	if err != nil {
 		return cli.NewExitError(err, 1)
