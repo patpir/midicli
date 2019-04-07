@@ -26,6 +26,7 @@ func main() {
 		commands.Add(),
 		commands.Remove(),
 		commands.Status(),
+		commands.RunPipeline(),
 	}
 
 	err := app.Run(os.Args)

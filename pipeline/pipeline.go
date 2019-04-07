@@ -29,6 +29,8 @@ type Pipeline interface {
 	SourceList() []*Block
 	TransformationList() []*Block
 	VisualizationList() []*Block
+
+	Run(filename_pattern string, writer ResultWriter) error
 }
 
 
